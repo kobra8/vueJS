@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="app">
+            <h2>{{invite}}</h2>
+            <h3>{{name}}</h3>
+            <input v-model="name">
+            <span v-bind:title="message">Try little tooltip. Hover this text.</span>
+            <span v-if="seen">Now You can see this text.</span>
+            <button v-on:click="hide">{{buttonName}}</button>
+            <ul>
+                <li v-for="mark in cars">{{mark.car}}</li>
+            </ul>
+            <ol>
+                <li v-for="day in days">{{day}}</li>
+            </ol>
+        </div>
+            <script type="text/javascript" src="lib/vue.js"></script>
+            <script type="text/javascript" src="src/app.js"></script>
+    </body>
+</html>
