@@ -24,6 +24,9 @@ var vueApp = new Vue({
                 this.seen = true;
                 this.buttonName='Hide text';
             }
+        },
+        changeTitle: function(event) {
+            this.invite = event.target.value;
         }
     }
 })
