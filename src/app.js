@@ -1,4 +1,4 @@
-var vueApp = new Vue({
+new Vue({
     el: '#app',
     data: {
         invite:"Welcome to VueJS",
@@ -12,7 +12,9 @@ var vueApp = new Vue({
           {car: 'Mazda'}
         ],
         days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        buttonName: 'Hide text'
+        buttonName: 'Hide text',
+        link: "https://www.google.pl",
+        htmlLink:"<a href='http://www.tarnow.pl'>Tarnow</a>"
     },
     methods: {
         hide: function() {

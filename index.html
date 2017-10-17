@@ -2,20 +2,23 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Vue JS</title>
     </head>
     <body>
         <div id="app">
+            <h1 v-once>{{invite}}</h1>
             <h2>{{invite}}</h2>
+            <input type="text" v-on:input="changeTitle"> <a v-bind:href="link">Google</a>
             <h3>{{name}}</h3>
             <input v-model="name">
             <span v-bind:title="message">Try little tooltip. Hover this text.</span>
             <span v-if="seen">Now You can see this text.</span>
+            <!-- Uwaga XSS attack possible -->
+            <p v-html="htmlLink"></p>
             <button v-on:click="hide">{{buttonName}}</button>
             <ul>
                 <li v-for="mark in cars">{{mark.car}}</li>
             </ul>
-            <input type="text" v-on:input="changeTitle">
             <ol>
                 <li v-for="day in days">{{day}}</li>
             </ol>
