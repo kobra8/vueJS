@@ -22,6 +22,13 @@
             <ol>
                 <li v-for="day in days">{{day}}</li>
             </ol>
+            <button v-on:click="increase(2, $event)">Click Me</button>
+            <p>{{counter}} {{counter2}}</p>
+            <p v-on:mousemove="updateCoordinates">
+                Coordinates: {{x}} / {{y}}
+            <span v-on:mousemove.stop>DEAD SPOT</span>
+            </p>
+            <input type="text" v-on:keyup.enter.space="alertMe">
         </div>
             <script type="text/javascript" src="lib/vue.js"></script>
             <script type="text/javascript" src="src/app.js"></script>
