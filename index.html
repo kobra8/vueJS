@@ -12,6 +12,7 @@
             <h3>{{name}}</h3>
             <input v-model="name">
             <span v-bind:title="message">Try little tooltip. Hover this text.</span>
+            <span :title="name">Hover this text again.</span>
             <span v-if="seen">Now You can see this text.</span>
             <!-- Uwaga XSS attack possible -->
             <p v-html="htmlLink"></p>
@@ -22,8 +23,11 @@
             <ol>
                 <li v-for="day in days">{{day}}</li>
             </ol>
-            <button v-on:click="increase(2, $event)">Click Me</button>
-            <p>{{counter}} {{counter2}}</p>
+            <button v-on:click="counter++">Increase</button>
+            <button @click="counter--">Decrease</button>
+            <button v-on:click="increase(2, $event)">Second increase</button>
+            <p>{{ counter }} | {{ secondCounter }}</p>
+            <p>{{ result() }} | {{ output }}</p>
             <p v-on:mousemove="updateCoordinates">
                 Coordinates: {{x}} / {{y}}
             <span v-on:mousemove.stop>DEAD SPOT</span>
