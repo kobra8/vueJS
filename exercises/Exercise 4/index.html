@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Exercise 4 - Vue - styling</title>
+  <link rel="stylesheet " href="./styles.css">
 </head>
 
 <body>
@@ -12,30 +13,31 @@
     <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
     <div>
       <button @click="startEffect">Start Effect</button>
-      <div id="effect"></div>
+      <div id="effect" :class="effectClass"></div>
     </div>
     <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-    <div>I got no class :(</div>
+    <div :class="[customClasses]">I did not have a class :( but now ... :)</div>
     <!-- 3) Let the user enter a class (create some example classes) and attach it -->
     <div>
-      <input type="text">
-      <div></div>
+        <input type="text" v-model="inputClass">
+        <button  @click="attachClass">Attach class</button>
+      <div :class="[inputClasses]"></div>
     </div>
     <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
     <div>
-      <input type="text">
-      <input type="text">
-      <div></div>
+      <input type="text" v-model="userClass">
+      <input type="text" v-model="userBoolean">
+      <div :class="[userClass, userBoolean ? 'ocean' : 'grass']"></div>
     </div>
     <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
     <div>
-      <input type="text">
-      <div></div>
+      <input type="text" v-model="color">
+      <div :style="{width: '300px', height: '50px', backgroundColor: color}"></div>
     </div>
     <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
     <div>
       <button v-on:click="startProgress">Start Progress</button>
-      <div></div>
+      <div :style="{width: barWidth+'px', height: '10px', marginTop: '5px', backgroundColor: 'orangered'}"></div>
     </div>
   </div>
   <script type="text/javascript" src="../../lib/vue.js"></script>
