@@ -23,13 +23,30 @@
     <div v-html="htmlCode"></div>
     <p>{{ setHelloParagraph() }}</p>
     <p>Product cost: {{ cost | currencyFormat('PLN') }} <input type="checkbox" ref="currChange"></p>
-    <button @click="increase">Click me</button> <span>Button clicked {{clicks}} times.</span>>
+    <button @click="increase">Click me</button> <span>Button clicked {{clicks}} times.</span>
+    <div>
+      <button @click="show = !show">Show / Hide</button>
+      <transition name="show">
+        <p v-if="show">Text to show and hide.</p>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
 import Vue from 'vue';
+const helloMixin = {
+  created() {
+    console.log('Hello from Mixin');
+  },
+  methods: {
+    helloTest() {
+      console.log('Hello from Test method');
+    }
+  }
+}
 export default {
   name: 'HelloWorld',
+  mixins: [helloMixin],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -48,14 +65,17 @@ export default {
       },
       inputType: 'password',
       numbers: [1,2,3,4],
-      htmlCode: '<i>Dangerous injection v-html directive</i>'
+      htmlCode: '<i>Dangerous injection v-html directive</i>',
+      show: true
     }
   },
     created() {
       Vue.set(this.cars, 1, 'Zastava 1100 p');
       setInterval(()=> {
         this.seconds++ ;
-      }, 1000)
+      }, 1000);
+      this.hello();
+      this.helloTest();
     },
     mounted(){
       Vue.nextTick(()=> {
@@ -69,6 +89,9 @@ export default {
       },
       increase() {
         this.clicks++;
+      },
+       hello() {
+        console.log('Hello from Component');
       }
     },
     computed: {
@@ -101,7 +124,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+$li-color: #42b983;
 h1, h2 {
   font-weight: normal;
 }
@@ -114,6 +138,25 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: $li-color;
+}
+
+.show-enter-active {
+  animation:  showHide .5s;
+}
+.show-leave-active {
+  animation:  showHide .5s reverse;
+}
+@keyframes showHide {
+  0% {
+    transform: scale(0)
+  }
+  50% {
+    transform: scale(1.5)
+  }
+  100% {
+    transform: scale(1)
+  }
+
 }
 </style>
